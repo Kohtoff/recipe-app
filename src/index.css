@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply border rounded-md  hover:text-white duration-200 ease-in px-4 py-2 w-full;
+  }
+
+  .btn.indigo {
+    @apply border-indigo-400 hover:bg-indigo-400 text-black hover:text-white;
+  }
+
+  .btn.indigo.--active {
+    @apply bg-indigo-500 text-white;
+  }
+
+  .btn.pink {
+    @apply border-pink-400 hover:bg-pink-400 hover:text-white;
+  }
+
+  .btn.pink.--active {
+    @apply bg-pink-500 text-white;
+  }
+
+  .pagination-step {
+    @apply relative
+    inline-flex
+    items-center
+    px-2
+    sm:px-4
+    py-2
+    ring-1
+    ring-gray-300
+    ring-inset
+    focus:outline-offset-0
+    focus:z-20
+    text-gray-900
+  }
+
+  .pagination-step.--disabled {
+    @apply text-gray-400 pointer-events-none
+  }
+
+  
+}

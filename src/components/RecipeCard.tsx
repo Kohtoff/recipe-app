@@ -4,7 +4,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { RecipeService } from "../services/RecipeService";
 import FavoritesService from "../services/FavoritesService";
 import { useEffect, useState } from "react";
-import SelectedMealsService from "../services/SelectedMealsService";
 
 type Props = {
   recipe: Recipe;
@@ -13,7 +12,6 @@ type Props = {
 const RecipeCard = ({ recipe }: Props) => {
   const queryClient = useQueryClient();
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isSelectedMeal, setIsSelectedMeal] = useState(false);
 
   const prefetchRecipe = async () => {
     const { idMeal } = recipe;
@@ -26,9 +24,7 @@ const RecipeCard = ({ recipe }: Props) => {
 
   useEffect(() => {
     const isSavedAsFavorite = !!FavoritesService.getRecordById(recipe.idMeal);
-    const isSelected = !!SelectedMealsService.getRecordById(recipe.idMeal);
     setIsFavorite(isSavedAsFavorite);
-    setIsSelectedMeal(isSelected);
   }, []);
 
   const toggleFavorite = () => {
@@ -38,15 +34,6 @@ const RecipeCard = ({ recipe }: Props) => {
       FavoritesService.addFavorite(recipe);
     }
     setIsFavorite(!isFavorite);
-  };
-
-  const toggleSelected = () => {
-    if (isSelectedMeal) {
-      SelectedMealsService.removeSelectedMeal(recipe);
-    } else {
-      SelectedMealsService.addSelectedMeal(recipe);
-    }
-    setIsSelectedMeal(!isSelectedMeal);
   };
 
   return (
@@ -71,12 +58,6 @@ const RecipeCard = ({ recipe }: Props) => {
           onClick={toggleFavorite}
         >
           {isFavorite ? "Favorite" : "Add to favorite"}
-        </button>
-        <button
-          className={`btn pink ${!isSelectedMeal || "--active"}`}
-          onClick={toggleSelected}
-        >
-          {isSelectedMeal ? "Selected" : "Select"}
         </button>
       </footer>
     </article>

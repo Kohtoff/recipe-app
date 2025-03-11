@@ -1,7 +1,6 @@
 import Favorites from "../pages/Favorites";
 import Home from "../pages/Home";
 import RecipePage from "../pages/Recipe";
-import SelectedMeals from "../pages/SelectedMeals";
 
 export const routes = [
   {
@@ -20,12 +19,6 @@ export const routes = [
     path: "/favorites",
     element: <Favorites />,
     name: "Favorites",
-    navLink: true,
-  },
-  {
-    path: "/selected-meals",
-    element: <SelectedMeals />,
-    name: "Selected meals",
     navLink: true,
   },
 ];
